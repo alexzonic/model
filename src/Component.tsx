@@ -2,6 +2,7 @@
 import {Input} from "./content/Input/Input";
 import {Button} from "./content/Button/Button";
 import {DijkstraTable} from "./content/DijkstraTable/DijkstraTable";
+import {Modal} from "./Modal/Modal";
 
 interface Props {
 
@@ -9,13 +10,14 @@ interface Props {
 
 export const Component: React.FC<Props> = ({}) => {
     const [infix, setInfix] = React.useState('');
+    const [isShowModal, setIsShowModal] = React.useState(false);
 
     return (
         <>
-            <Input value={infix} onChange={setInfix}/>
-            <Button value={'123'} onClick={() => {
-            }}/>
+            <Input value={infix} onChange={setInfix} />
+            <Button value={'123'} onClick={() => setIsShowModal(!isShowModal)} />
             <DijkstraTable/>
+            {isShowModal && <Modal setInfix={setInfix} setIsShowModal={setIsShowModal}/>}
         </>
     );
 };
