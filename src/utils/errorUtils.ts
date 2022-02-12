@@ -1,5 +1,5 @@
-﻿import {SyntaxError} from "../domain/SyntaxError";
-import {Symbols} from '../domain/OperationSymbol'
+﻿import {Symbols} from "../domain/OperationSymbol";
+import {SyntaxError} from "../domain/SyntaxError";
 
 export function isError(text: string): SyntaxError {
     return {
