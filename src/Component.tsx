@@ -14,10 +14,10 @@ export const Component: React.FC<Props> = ({}) => {
 
     return (
         <>
-            <Input value={infix} onChange={setInfix} />
-            <Button value={'123'} onClick={() => setIsShowModal(!isShowModal)} />
+            <Input value={infix} onChange={setInfix}/>
+            <Button value={'Ввести значение'} onClick={() => setIsShowModal(!isShowModal)}/>
             <DijkstraTable/>
-            {isShowModal && <Modal setInfix={setInfix} setIsShowModal={setIsShowModal}/>}
+            {isShowModal && <Modal setInfix={setInfix} onClose={() => setIsShowModal(false)}/>}
         </>
     );
 };
