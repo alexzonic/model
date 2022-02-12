@@ -10,7 +10,13 @@ interface Props {
 export const TableRow: React.FC<Props> = ({cells}) => {
     return (
         <div className="tb-row">
-            {cells.map(x => <TableCell id={x.id} value={x.value} active={false}/>)}
+            {cells.map((cell, idx) =>
+                <TableCell
+                    key={`${cell.id}_${idx}`}
+                    id={cell.id}
+                    value={cell.value}
+                    active={false}
+                />)}
         </div>
     );
 };

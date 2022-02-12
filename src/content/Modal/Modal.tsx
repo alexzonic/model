@@ -1,4 +1,4 @@
-﻿import React, {useState} from 'react';
+﻿import React from 'react';
 import "./Modal.scss";
 import {Input} from "../Input/Input";
 import {Button} from "../Button/Button";
