@@ -2,7 +2,7 @@
 import {Input} from "./content/Input/Input";
 import {Button} from "./content/Button/Button";
 import {DijkstraTable} from "./content/DijkstraTable/DijkstraTable";
-import {Modal} from "./Modal/Modal";
+import {Modal} from "./content/Modal/Modal";
 
 interface Props {
 
