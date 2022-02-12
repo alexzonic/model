@@ -8,6 +8,6 @@ interface Props {
 
 export const Button: React.FC<Props> = ({value, onClick}) => {
     return (
-        <input className="root" type="button" value={value} onClick={onClick} />
+        <input className="root-btn" type="button" value={value} onClick={onClick} />
     );
 };
