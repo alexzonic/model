@@ -7,7 +7,7 @@ export type Cell = {
     value: string;
 }
 
-export function createTable() {
+export function createTable(matrix: Array<string[]>) {
     const result: Row[] = [];
     const head = matrix[0];
 
@@ -47,7 +47,7 @@ const four = '4';
 const five = '5';
 const six = '6';
 
-const matrix: Array<string[]> = [
+export const dijkstraMatrix: Array<string[]> = [
     ['', empty, plus, minus, mult, divide, pow, leftQuote, rightQuote, func, value],
     [empty, four, one, one, one, one, one, one, five, one, six],
     [plus, two, two, two, one, one, one, one, two, one, six],

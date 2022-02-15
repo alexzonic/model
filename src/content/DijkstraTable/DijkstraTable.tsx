@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import {createTable} from "../../domain/Dijkstra";
+import {createTable, dijkstraMatrix} from "../../domain/Dijkstra";
 import {TableRow} from '../TableRow/TableRow';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const DijkstraTable: React.FC<Props> = ({}) => {
-    const tableValues = (createTable() || []);
+    const tableValues = (createTable(dijkstraMatrix) || []);
 
     return (
         <>
