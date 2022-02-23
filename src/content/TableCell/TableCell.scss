@@ -17,4 +17,12 @@
 
 .tb-cell-inputs {
   background: white;
+  
+  &:hover {
+    background-color: darken(#ffffff, 20);
+  }
+  
+  &:active {
+    background-color: darken(#ffffff, 30);
+  }
 }

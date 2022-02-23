@@ -6,10 +6,18 @@ interface Props {
     onChange: (value: string) => void;
     placeholder?: string,
     className?: string
+    width?: number;
 }
 
-export const Input: React.FC<Props> = ({value, onChange, className, placeholder}) => {
-
+export const Input: React.FC<Props> = (
+    {
+        value,
+        onChange,
+        className,
+        placeholder,
+        width,
+    }
+) => {
     return (
         <input
             className={className}
@@ -17,6 +25,7 @@ export const Input: React.FC<Props> = ({value, onChange, className, placeholder}
             value={value}
             placeholder={placeholder}
             onInput={(e) => onChange(e.currentTarget.value)}
+            width={width ?? 120}
         />
     );
 };

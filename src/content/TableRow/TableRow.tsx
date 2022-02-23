@@ -6,11 +6,12 @@ import {TableCell} from "../TableCell/TableCell";
 interface Props {
     cells: Cell[];
     onClick?: (value: string) => void;
+    width: number
 }
 
-export const TableRow: React.FC<Props> = ({cells, onClick}) => {
+export const TableRow: React.FC<Props> = ({cells, onClick, width}) => {
     return (
-        <div className="tb-row">
+        <div className="tb-row" style={{width: width}}>
             {cells.map((cell, idx) =>
                 <TableCell 
                     key={`${cell.id}_${idx}`}

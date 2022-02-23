@@ -1,5 +1,6 @@
 ﻿.tb-row {
   display: grid;
   grid-template-rows: 40px;
-  grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+  grid-template-columns: repeat(auto-fit, 40px);
+  grid-auto-flow: column;
 }
