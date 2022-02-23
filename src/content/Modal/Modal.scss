@@ -19,38 +19,30 @@
     justify-content: space-between;
     padding: 16px 24px;
 
-    .modal-content_input {
+    &_input {
       height: 32px;
       margin-bottom: 16px;
+    }
 
-      &_input {
-        height: 25px;
-        width: 500px;
-      }
+    &_buttons {
+      display: flex;
+      flex-direction: row;
+      margin-top: 16px;
 
-      .modal-content_buttons {
-        margin-top: 16px;
-      }
-
-      &_buttons {
-        display: flex;
-        flex-direction: row;
-
-        .root-btn {
-          &:last-child {
-            margin-left: 10px;
-            background-color: #282c34;
-          }
+      .root-btn {
+        &:last-child {
+          margin-left: 10px;
+          background-color: #282c34;
         }
       }
+    }
 
-      .modal-content_tables {
-        display: flex;
-        justify-content: center;
+    &_tables {
+      display: flex;
+      justify-content: center;
 
-        > * {
-          margin: 0 4px;
-        }
+      > * {
+        margin: 0 4px;
       }
     }
   }

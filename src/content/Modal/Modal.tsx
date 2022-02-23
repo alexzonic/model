@@ -22,13 +22,13 @@ export const Modal: React.FC<Props> = ({onClose, setInfix, infix}) => {
         <div className="modal" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <Input
-                    className={'modal-content_input'}
+                    className="modal-content_input"
                     value={expression}
                     onChange={setExpression}
                     placeholder={'Введите выражение'}
                     width={240}
                 />
-                <div className={"modal-content_tables"}>
+                <div className="modal-content_tables">
                     <ModalTable onClick={handleInput} matrix={inputNumbersBlockMatrix} matrixWidth={160}/>
                     <ModalTable onClick={handleInput} matrix={inputOperatorsBlockMatrix} matrixWidth={80}/>
                 </div>
