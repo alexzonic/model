@@ -18,31 +18,39 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 16px 24px;
-    
+
     .modal-content_input {
       height: 32px;
       margin-bottom: 16px;
-    }
 
-    .modal-content_buttons {
-      margin-top: 16px;
-      display: flex;
-      flex-direction: row;
+      &_input {
+        height: 25px;
+        width: 500px;
+      }
 
-      .root-btn {
-        &:last-child {
-          margin-left: 10px;
-          background-color: #282c34;
+      .modal-content_buttons {
+        margin-top: 16px;
+      }
+
+      &_buttons {
+        display: flex;
+        flex-direction: row;
+
+        .root-btn {
+          &:last-child {
+            margin-left: 10px;
+            background-color: #282c34;
+          }
         }
       }
-    }
 
-    .modal-content_tables {
-      display: flex;
-      justify-content: center;
-      
-      > * {
-        margin: 0 4px;
+      .modal-content_tables {
+        display: flex;
+        justify-content: center;
+
+        > * {
+          margin: 0 4px;
+        }
       }
     }
   }
