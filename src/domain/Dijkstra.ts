@@ -30,22 +30,22 @@ export function createTable(matrix: Array<string[]>) {
     return result;
 }
 
-const empty = '$';
-const plus = '+';
-const minus = '-';
-const mult = '*';
-const divide = '/';
-const pow = '^';
-const leftQuote = '(';
-const rightQuote = ')';
-const func = 'F';
-const value = 'P';
-const one = '1';
-const two = '2';
-const three = '3';
-const four = '4';
-const five = '5';
-const six = '6';
+export const empty = '$';
+export const plus = '+';
+export const minus = '-';
+export const mult = '*';
+export const divide = '/';
+export const pow = '^';
+export const leftQuote = '(';
+export const rightQuote = ')';
+export const func = 'F';
+export const value = 'P';
+export const one = '1';
+export const two = '2';
+export const three = '3';
+export const four = '4';
+export const five = '5';
+export const six = '6';
 
 export const dijkstraMatrix: Array<string[]> = [
     ['', empty, plus, minus, mult, divide, pow, leftQuote, rightQuote, func, value],

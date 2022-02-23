@@ -1,16 +1,41 @@
-﻿
+﻿.main-page-input-row,
+.main-page-row {
+  display: grid;
+  grid-auto-flow: column;
+  margin: 16px;
+}
+
+.main-page-input-row {
+  align-items: center;
+
+  &_column {
+    display: flex;
+    flex-direction: column;
+
+    &_button {
+      max-height: 36px;
+      margin: 32px 24px 12px;
+      
+      > * {
+        margin-bottom: 16px;
+        margin-left: 16px;
+      }
+    }
+    
+    &_label {
+      font-size: 18px;
+    }
+
+    &_input {
+      height: 36px;
+      padding: 0 8px;
+      width: 280px;
+      margin: 8px 0;
+    }
+  }
+}
 
 .main-page-row {
-  display: flex;
-  margin: 16px;
-  align-items: baseline;
-  
-  &_input {
-    height: 36px;
-    padding: 0 8px;
-    width: 280px;
-  }
-
   &_stack {
     &_textarea {
       width: 30px;
