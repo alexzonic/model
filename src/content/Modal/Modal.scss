@@ -18,10 +18,14 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 16px 24px;
-
-    &_input {
-      height: 32px;
+    
+    &-infix {
       margin-bottom: 16px;
+      
+      &_input {
+        height: 32px;
+        margin-right: 10px;
+      }
     }
 
     &_buttons {
@@ -39,7 +43,7 @@
 
     &_tables {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
 
       > * {
         margin: 0 4px;

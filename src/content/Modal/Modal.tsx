@@ -21,13 +21,26 @@ export const Modal: React.FC<Props> = ({onClose, setInfix, infix}) => {
     return (
         <div className="modal" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <Input
-                    className="modal-content_input"
-                    value={expression}
-                    onChange={setExpression}
-                    placeholder={'Введите выражение'}
-                    width={240}
-                />
+                <div className="modal-content-infix">
+                    <Input
+                        className="modal-content-infix_input"
+                        value={expression}
+                        onChange={setExpression}
+                        placeholder={'Введите выражение'}
+                        width={240}
+                    />
+                    <Button
+                        className="modal-content-infix_button"
+                        value="Стереть"
+                        onClick={() => {
+                            // @ts-ignore
+                            const exp = [...expression];
+                            
+                            exp.length--;
+                            setExpression(exp.join(''))
+                        }}
+                    />
+                </div>
                 <div className="modal-content_tables">
                     <ModalTable onClick={handleInput} matrix={inputNumbersBlockMatrix} matrixWidth={160}/>
                     <ModalTable onClick={handleInput} matrix={inputOperatorsBlockMatrix} matrixWidth={80}/>
