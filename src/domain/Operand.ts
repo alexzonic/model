@@ -1,2 +1,1 @@
-﻿
-export const Operands = []
+﻿export const Operands = ['a', 'b', 'c', 'd', 'e']

@@ -1,26 +1,56 @@
 ﻿import {Symbols} from "../domain/OperationSymbol";
 import {SyntaxError} from "../domain/SyntaxError";
+import {Operands} from "../domain/Operand";
 
-export function isError(text: string): SyntaxError {
-    return {
-        isSomeOperationSymbolInARow: isOperationSymbolInARow(text),
-        isSomeVariablesInARow: false,
-        isMissedOperationSymbol: false,
-    };
+export function infixValidator(text: string, index: number): SyntaxError {
+    const error: SyntaxError = {
+        isError: true,
+        message: ""
+    }
+    if(validateStartedInfix(text)){
+        error.message = "Ошибка в начале.";
+        return error;
+    }
+    if(validateOperationSymbolInARow(text, index)){
+        error.message = "Ошибка в операции.";
+        return error;
+    }
+    if(validateSomeVariablesInARow(text, index)){
+        error.message = "Ошибка в переменной.";
+        return error;
+    }
+    if(validateMissedOperationSymbol(text, index)){
+        error.message = "Ошибка в скобочной структуре.";
+        return error;
+    }
+    
+    error.isError = false;
+    return error;
 }
 
-function isOperationSymbolInARow(text: string): boolean {
-    for (let i = 0; i < text.length; i++) {
-        if (Symbols.includes(text[i])) {
-            return true;
-        }
-    }
-    return false;
+function validateStartedInfix(text: string): boolean{
+    return Symbols.includes(text[0]) || text[0] == ')'
 }
 
-function isSomeVariablesInARow(text: string) {
-    for(let i = 0; i < text.length; i++) {
-        
+function validateOperationSymbolInARow(text: string, index: number): boolean {
+    if(text.length < 2 || text.length == index + 1) return false;
+    
+    return Symbols.includes(text[index]) && Symbols.includes(text[index + 1]);
+}
+
+function validateSomeVariablesInARow(text: string, index: number): boolean {
+    if(text.length < 2 || text.length == index + 1) return false;
+
+    return Operands.includes(text[index]) && Operands.includes(text[index + 1]);
+}
+
+function validateMissedOperationSymbol(text: string, index: number): boolean {
+    if(text.length < 2 || text.length == index + 1) return false;
+    
+    if(text[index] === '(' && !Symbols.includes(text[index + 1])){
+        return true;
     }
+    
+    return text[index] === ')' && Symbols.includes(text[index - 1]);
 }
 

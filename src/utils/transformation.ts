@@ -1,4 +1,5 @@
 ﻿import {dijkstraMatrix, five, four, one, six, three, two} from "../domain/Dijkstra";
+import {infixValidator} from "./errorUtils";
 
 let inputChanged = false;
 let index = 0;
@@ -30,7 +31,13 @@ export function transform(
     if (input.length === 0 && stack.length === 0) {
         return {end: true, topIndex: 0, leftIndex: 0};
     }
-
+    
+    const validateResult = infixValidator(infixForm, index);
+    if(validateResult.isError){
+        alert(validateResult.message)
+        return {end: true, topIndex: 0, leftIndex: 0};
+    }
+    
     const {topIndex, leftIndex} = findCommand(input[index], getLastStackValue())
 
     executeCommand(dijkstraMatrix[leftIndex][topIndex], index);
