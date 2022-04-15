@@ -16,24 +16,24 @@ export const Component: React.FC<Props> = ({}) => {
     const [isShowModal, setIsShowModal] = React.useState(false);
     const [started, setStarted] = React.useState(false)
     const [stack, setStack] = React.useState('');
-    const [reboot, setReboot] = React.useState(false);
     const [activeCell, setActiveCell] = React.useState({topIndex: 0, leftIndex: 0})
 
-    if (started) {
-        setTimeout(()=> {
-            const result = transform(infix, setStack, setPostfix, reboot);
-            setActiveCell({topIndex: result.topIndex, leftIndex: result.leftIndex})
+    React.useEffect(() => {
+        if (!started)
+            return;
+        const timer = setInterval(() => {
+            if (!started)
+                return;
+            const result = transform(infix, setStack, setPostfix);
+            setActiveCell({topIndex: result.topIndex, leftIndex: result.leftIndex});
             if (result.end) {
                 setStarted(false);
                 setActiveCell({topIndex: 0, leftIndex: 0})
             }
-            if (reboot) {
-                setReboot(false);
-                setActiveCell({topIndex: 0, leftIndex: 0})
-            }
-        }, 1000)
-    }
-    
+        }, 1500);
+        return () => clearInterval(timer);
+    }, [started])
+
     return (
         <>
             <div className="main-page-input-row">
@@ -65,8 +65,6 @@ export const Component: React.FC<Props> = ({}) => {
                             setInfix('');
                             setStack('');
                             setPostfix('');
-                            setStarted(false);
-                            setReboot(true);
                             setActiveCell({topIndex: 0, leftIndex: 0})
                         }}
                         className="main-page-input-row_column_button"
@@ -76,16 +74,17 @@ export const Component: React.FC<Props> = ({}) => {
             <div className="main-page-row">
                 <span className="main-page-row_stack">
                     <div>Стек</div>
-                    <textarea 
-                        className="main-page-row_stack_textarea" 
-                        value={stack} 
+                    <textarea
+                        className="main-page-row_stack_textarea"
+                        value={stack}
                         rows={stack.length + 1 > 7 ? 7 : stack.length + 1}
-                        onChange={() => {}} /*только чтоб варнингов в консоли не было*/
+                        onChange={() => {
+                        }} /*только чтоб варнингов в консоли не было*/
                     />
                 </span>
-                <DijkstraTable activeCellTopIndex={activeCell.topIndex} activeCellLeftIndex={activeCell.leftIndex} />
+                <DijkstraTable activeCellTopIndex={activeCell.topIndex} activeCellLeftIndex={activeCell.leftIndex}/>
             </div>
-            <Button 
+            <Button
                 value={started ? 'Остановить процесс' : 'Начать преобразование'}
                 className="main-page-btn"
                 onClick={() => setStarted(!started)}
