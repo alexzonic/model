@@ -56,4 +56,8 @@
 
 .main-page-btn {
   margin-top: 24px;
+  
+  &:first-child{
+    margin-right: 10px;
+  }
 }

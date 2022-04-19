@@ -18,18 +18,23 @@ export const Component: React.FC<Props> = ({}) => {
     const [stack, setStack] = React.useState('');
     const [activeCell, setActiveCell] = React.useState({topIndex: 0, leftIndex: 0})
 
+    function startTransform(){
+        const result = transform(infix, setStack, setPostfix);
+        setActiveCell({topIndex: result.topIndex, leftIndex: result.leftIndex});
+        if (result.end) {
+            setStarted(false);
+            setActiveCell({topIndex: 0, leftIndex: 0})
+        }
+    }
+
     React.useEffect(() => {
         if (!started)
             return;
+
         const timer = setInterval(() => {
             if (!started)
                 return;
-            const result = transform(infix, setStack, setPostfix);
-            setActiveCell({topIndex: result.topIndex, leftIndex: result.leftIndex});
-            if (result.end) {
-                setStarted(false);
-                setActiveCell({topIndex: 0, leftIndex: 0})
-            }
+            startTransform()
         }, 1500);
         return () => clearInterval(timer);
     }, [started])
@@ -84,11 +89,18 @@ export const Component: React.FC<Props> = ({}) => {
                 </span>
                 <DijkstraTable activeCellTopIndex={activeCell.topIndex} activeCellLeftIndex={activeCell.leftIndex}/>
             </div>
-            <Button
-                value={started ? 'Остановить процесс' : 'Начать преобразование'}
-                className="main-page-btn"
-                onClick={() => setStarted(!started)}
-            />
+            <span>
+                <Button
+                    value={started ? 'Остановить процесс' : 'Начать преобразование'}
+                    className="main-page-btn"
+                    onClick={() => setStarted(!started)}
+                />
+                <Button
+                    value={'Выполнить шаг'}
+                    className="main-page-btn"
+                    onClick={() => startTransform() }
+                />
+            </span>
             {isShowModal && <Modal
                 setInfix={setInfix}
                 onClose={() => setIsShowModal(false)}
