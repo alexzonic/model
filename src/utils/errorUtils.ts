@@ -12,15 +12,15 @@ export function infixValidator(text: string, index: number): SyntaxError {
         return error;
     }
     if(validateOperationSymbolInARow(text, index)){
-        error.message = "Ошибка в операции.";
+        error.message = "Ошибка: Подряд две операции.";
         return error;
     }
     if(validateSomeVariablesInARow(text, index)){
-        error.message = "Ошибка в переменной.";
+        error.message = "Ошибка: Подряд 2 переменные.";
         return error;
     }
     if(validateMissedOperationSymbol(text, index)){
-        error.message = "Ошибка в скобочной структуре.";
+        error.message = "Ошибка: между скобкой и переменной отсутствует символ операции";
         return error;
     }
     
@@ -33,21 +33,21 @@ function validateStartedInfix(text: string): boolean{
 }
 
 function validateOperationSymbolInARow(text: string, index: number): boolean {
-    if(text.length < 2 || text.length == index + 1) return false;
+    if(text.length < 2 || text.length === index + 1) return false;
     
     return Symbols.includes(text[index]) && Symbols.includes(text[index + 1]);
 }
 
 function validateSomeVariablesInARow(text: string, index: number): boolean {
-    if(text.length < 2 || text.length == index + 1) return false;
+    if(text.length < 2 || text.length === index + 1) return false;
 
     return Operands.includes(text[index]) && Operands.includes(text[index + 1]);
 }
 
 function validateMissedOperationSymbol(text: string, index: number): boolean {
-    if(text.length < 2 || text.length == index + 1) return false;
-    
-    if(text[index] === '(' && !Symbols.includes(text[index + 1])){
+    if(text.length < 2 || text.length === index + 1) return false;
+
+    if(!Symbols.includes(text[index]) && text[index + 1] === '('){
         return true;
     }
     
